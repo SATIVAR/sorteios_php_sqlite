@@ -1,0 +1,23 @@
+[
+    {
+        "timestamp": "2025-07-20_14-54-09",
+        "file": "backup_2025-07-20_14-54-09.db",
+        "size": 159744,
+        "description": "Modifica\u00e7\u00f5es recentes",
+        "created_at": "2025-07-20 14:54:09"
+    },
+    {
+        "timestamp": "2025-07-20_14-45-42",
+        "file": "backup_2025-07-20_14-45-42.db",
+        "size": 159744,
+        "description": "Modifica\u00e7\u00f5es recentes",
+        "created_at": "2025-07-20 14:45:42"
+    },
+    {
+        "timestamp": "2025-07-20_14-45-20",
+        "file": "backup_2025-07-20_14-45-20.db",
+        "size": 4096,
+        "description": "Setup inicial do sistema",
+        "created_at": "2025-07-20 14:45:20"
+    }
+]

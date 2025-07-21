@@ -1,0 +1,290 @@
+/**
+ * Estilos Responsivos - Sistema de Sorteios
+ * Implementa melhorias de responsividade para diferentes dispositivos
+ */
+
+/* Variáveis para breakpoints consistentes */
+:root {
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+    --breakpoint-2xl: 1536px;
+}
+
+/* Estilos base mobile-first */
+html {
+    font-size: 16px;
+}
+
+/* Melhorias para dispositivos muito pequenos (< 360px) */
+@media (max-width: 359px) {
+    html {
+        font-size: 14px;
+    }
+    
+    .btn {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.875rem;
+    }
+    
+    .card {
+        padding: 0.75rem;
+    }
+    
+    .nav-link {
+        padding: 0.5rem 0.75rem;
+    }
+}
+
+/* Melhorias para dispositivos pequenos (< 640px) */
+@media (max-width: 639px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    /* Ajustes para tabelas em dispositivos pequenos */
+    .table-responsive {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Ajustes para formulários em dispositivos pequenos */
+    .form-row {
+        flex-direction: column;
+    }
+    
+    .form-row > * {
+        margin-bottom: 1rem;
+    }
+    
+    /* Ajustes para botões em dispositivos pequenos */
+    .btn-group {
+        flex-direction: column;
+    }
+    
+    .btn-group .btn {
+        margin-bottom: 0.5rem;
+        width: 100%;
+    }
+    
+    /* Ajustes para cards em dispositivos pequenos */
+    .card-header {
+        padding: 0.75rem 1rem;
+    }
+    
+    .card-body {
+        padding: 1rem;
+    }
+    
+    .card-footer {
+        padding: 0.75rem 1rem;
+    }
+}
+
+/* Melhorias para dispositivos médios (640px - 768px) */
+@media (min-width: 640px) and (max-width: 767px) {
+    /* Ajustes para grids em dispositivos médios */
+    .grid-cols-2-sm {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Melhorias para tablets (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    /* Ajustes para grids em tablets */
+    .grid-cols-3-md {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    
+    /* Ajustes para sidebar em tablets */
+    .sidebar-md-compact {
+        width: 4rem;
+    }
+    
+    .sidebar-md-compact .nav-link span {
+        display: none;
+    }
+    
+    .sidebar-md-compact .nav-link svg {
+        margin-right: 0;
+    }
+}
+
+/* Melhorias para desktops (> 1024px) */
+@media (min-width: 1024px) {
+    /* Ajustes para grids em desktops */
+    .grid-cols-4-lg {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+/* Melhorias para telas grandes (> 1280px) */
+@media (min-width: 1280px) {
+    .container-xl {
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* Melhorias para orientação paisagem em dispositivos móveis */
+@media (max-width: 767px) and (orientation: landscape) {
+    .modal-content {
+        max-height: 80vh;
+    }
+}
+
+/* Ajustes para altura da tela */
+@media (max-height: 600px) {
+    .sidebar {
+        padding-top: 0.5rem;
+    }
+    
+    .nav-link {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+}
+
+/* Melhorias para impressão */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    .print-full-width {
+        width: 100% !important;
+    }
+    
+    .print-break-before {
+        page-break-before: always;
+    }
+    
+    .print-break-after {
+        page-break-after: always;
+    }
+    
+    .print-no-break {
+        page-break-inside: avoid;
+    }
+}
+
+/* Melhorias para tabelas responsivas */
+.table-responsive-stack tr {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.table-responsive-stack td,
+.table-responsive-stack th {
+    flex: 1 1 20%;
+}
+
+@media (max-width: 767px) {
+    .table-responsive-stack tr {
+        flex-direction: column;
+        border-bottom: 3px solid #e5e7eb;
+    }
+    
+    .table-responsive-stack td,
+    .table-responsive-stack th {
+        flex-basis: 100%;
+    }
+    
+    .table-responsive-stack td {
+        border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .table-responsive-stack td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        display: inline-block;
+        width: 40%;
+    }
+}
+
+/* Melhorias para formulários responsivos */
+@media (max-width: 767px) {
+    .form-responsive .form-group {
+        margin-bottom: 1rem;
+    }
+    
+    .form-responsive .form-row {
+        display: block;
+    }
+    
+    .form-responsive .form-row > div {
+        margin-bottom: 1rem;
+    }
+    
+    .form-responsive .btn-block-sm {
+        display: block;
+        width: 100%;
+    }
+}
+
+/* Melhorias para navegação responsiva */
+@media (max-width: 1023px) {
+    .nav-responsive {
+        flex-direction: column;
+    }
+    
+    .nav-responsive .nav-item {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* Melhorias para grids responsivos */
+.grid-responsive {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+}
+
+@media (min-width: 640px) {
+    .grid-responsive {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    .grid-responsive {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid-responsive {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Melhorias para texto responsivo */
+.text-responsive {
+    font-size: 1rem;
+}
+
+@media (min-width: 640px) {
+    .text-responsive {
+        font-size: 1.125rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .text-responsive {
+        font-size: 1.25rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .text-responsive {
+        font-size: 1.5rem;
+    }
+}

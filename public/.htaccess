@@ -1,0 +1,158 @@
+<IfModule mime_module>
+    AddHandler application/x-httpd-php .php
+    AddType application/x-httpd-php .php .phtml
+</IfModule>
+
+# Sistema de Sorteios - Configurações Apache
+# Otimizado para hospedagem compartilhada
+
+# Proteção de arquivos sensíveis
+<Files "*.db">
+    Require all denied
+</Files>
+
+<Files "*.log">
+    Require all denied
+</Files>
+
+# Proteção de arquivos PHP sensíveis (apenas acesso via include)
+<Files "includes/config.php">
+    Require all denied
+</Files>
+
+<Files "includes/database.php">
+    Require all denied
+</Files>
+
+<Files "includes/auth.php">
+    Require all denied
+</Files>
+
+# Habilitar rewrite engine
+RewriteEngine On
+
+# Redirecionamento para URLs amigáveis de participação
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^participar/([a-zA-Z0-9]+)$ participar.php?url=$1 [L,QSA]
+
+# Compressão GZIP para melhor performance
+<IfModule mod_deflate.c>
+    # Ativar compressão para todos os tipos de conteúdo
+    <IfModule mod_filter.c>
+        AddOutputFilterByType DEFLATE text/plain text/html text/xml text/css
+        AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript
+        AddOutputFilterByType DEFLATE application/xml application/xhtml+xml application/rss+xml
+        AddOutputFilterByType DEFLATE application/json application/ld+json
+        AddOutputFilterByType DEFLATE application/atom+xml
+        AddOutputFilterByType DEFLATE image/svg+xml application/font-woff application/font-woff2
+        AddOutputFilterByType DEFLATE application/vnd.ms-fontobject application/x-font-ttf font/opentype
+    </IfModule>
+    
+    # Nível de compressão otimizado para performance (6 é um bom equilíbrio)
+    DeflateCompressionLevel 6
+    
+    # Excluir navegadores antigos que não suportam compressão
+    BrowserMatch ^Mozilla/4 gzip-only-text/html
+    BrowserMatch ^Mozilla/4\.0[678] no-gzip
+    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+    
+    # Não comprimir imagens já comprimidas
+    SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|webp)$ no-gzip dont-vary
+    
+    # Garantir que proxies não entreguem conteúdo comprimido para navegadores que não suportam
+    Header append Vary User-Agent env=!dont-vary
+    
+    # Adicionar Vary: Accept-Encoding para garantir que CDNs e proxies armazenem versões comprimidas e não comprimidas
+    <IfModule mod_headers.c>
+        Header append Vary Accept-Encoding
+    </IfModule>
+</IfModule>
+
+# Cache de arquivos estáticos
+<IfModule mod_expires.c>
+    ExpiresActive on
+    
+    # Configuração padrão
+    ExpiresDefault "access plus 1 month"
+    
+    # Documentos HTML
+    ExpiresByType text/html "access plus 1 day"
+    
+    # Dados
+    ExpiresByType text/xml "access plus 1 hour"
+    ExpiresByType application/xml "access plus 1 hour"
+    ExpiresByType application/json "access plus 1 hour"
+    
+    # Feed
+    ExpiresByType application/rss+xml "access plus 1 hour"
+    ExpiresByType application/atom+xml "access plus 1 hour"
+    
+    # Favicon
+    ExpiresByType image/x-icon "access plus 1 week"
+    
+    # Mídia: imagens, vídeo, áudio
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    ExpiresByType video/ogg "access plus 1 month"
+    ExpiresByType audio/ogg "access plus 1 month"
+    ExpiresByType video/mp4 "access plus 1 month"
+    ExpiresByType video/webm "access plus 1 month"
+    
+    # Webfonts
+    ExpiresByType application/font-woff "access plus 1 month"
+    ExpiresByType application/font-woff2 "access plus 1 month"
+    ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
+    ExpiresByType application/x-font-ttf "access plus 1 month"
+    ExpiresByType font/opentype "access plus 1 month"
+    
+    # CSS e JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+</IfModule>
+
+# Adicionar cabeçalhos de cache
+<IfModule mod_headers.c>
+    # Cache para todos os arquivos estáticos
+    <FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|webp|js|css|swf|svg|woff|woff2|ttf|eot)$">
+        Header set Cache-Control "max-age=2592000, public"
+    </FilesMatch>
+    
+    # Cache para arquivos HTML e XML
+    <FilesMatch "\.(html|htm|xml|txt|xsl)$">
+        Header set Cache-Control "max-age=86400, public, must-revalidate"
+    </FilesMatch>
+    
+    # Cache para arquivos PHP (apenas para páginas públicas)
+    <FilesMatch "participar\.php$">
+        Header set Cache-Control "max-age=600, public, must-revalidate"
+    </FilesMatch>
+    
+    # Desabilitar cache para endpoints AJAX
+    <FilesMatch "ajax/.*\.php$">
+        Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "Thu, 01 Jan 1970 00:00:00 GMT"
+    </FilesMatch>
+</IfModule>
+
+# Headers de segurança
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Configurações específicas para pasta public
+DirectoryIndex index.php
+
+# Configurações de upload (se necessário)
+php_value upload_max_filesize 10M
+php_value post_max_size 10M
+php_value max_execution_time 30
+php_value memory_limit 128M
