@@ -1,0 +1,5 @@
+# Ignora todos os diretórios que começam com ._ e todo seu conteúdo
+._*/
+
+# Ignora também os arquivos dentro desses diretórios
+._*/*

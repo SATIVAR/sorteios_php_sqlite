@@ -1,0 +1,106 @@
+/* assets/css/participar-modern.css */
+
+/* Estilos base para a página de participação moderna */
+body {
+    background-color: #f8f9fa; /* Um cinza muito claro, quase branco */
+    color: #212529; /* Cor de texto principal escura */
+    font-family: 'Inter', sans-serif; /* Fonte moderna e limpa */
+}
+
+/* Header fixo */
+.public-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid #e9ecef;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.public-header .logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #0d6efd; /* Azul primário */
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+/* Card principal */
+.form-card {
+    background-color: #ffffff;
+    border-radius: 1.5rem; /* Bordas mais suaves */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05), 0 4px 10px rgba(0, 0, 0, 0.02);
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+    border: 1px solid #f1f3f5;
+}
+
+.form-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 8px 15px rgba(0, 0, 0, 0.04);
+    transform: translateY(-5px);
+}
+
+/* Estilos de formulário */
+.form-input {
+    background-color: #f8f9fa;
+    border: 2px solid #dee2e6;
+    border-radius: 0.75rem;
+    padding: 1rem 1.25rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+    outline: none;
+}
+
+/* Botão principal */
+.submit-btn {
+    background: linear-gradient(90deg, #0d6efd, #0d6efd);
+    color: white;
+    font-weight: 600;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(13, 110, 253, 0.25);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 10px rgba(13, 110, 253, 0.2);
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.fade-in-delay-1 { animation-delay: 0.1s; }
+.fade-in-delay-2 { animation-delay: 0.2s; }
+.fade-in-delay-3 { animation-delay: 0.3s; }
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .public-header .logo {
+        font-size: 1.25rem;
+    }
+    .form-card {
+        border-radius: 1rem;
+        padding: 1.5rem;
+    }
+}

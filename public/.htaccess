@@ -1,0 +1,13 @@
+# Roteador universal para URLs amigáveis
+# Este arquivo .htaccess permite URLs como /participar/SEUTOKEN funcionarem em ambientes Apache
+RewriteEngine On
+RewriteBase /
+
+# Não reescrever se o arquivo ou diretório existir
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Roteamento para participar.php
+RewriteRule ^participar/([a-zA-Z0-9]+)$ participar.php?url=$1 [L,QSA]
+
+# Outras regras amigáveis podem ser adicionadas abaixo
