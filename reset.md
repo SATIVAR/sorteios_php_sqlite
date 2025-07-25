@@ -1,0 +1,1 @@
+docker exec -it devilbox-php-1 php /shared/httpd/sorteios_php_sqlite/public/reset_total.php

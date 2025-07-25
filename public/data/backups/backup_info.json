@@ -1,23 +1,9 @@
 [
     {
-        "timestamp": "2025-07-24_11-24-37",
-        "file": "backup_2025-07-24_11-24-37.db",
+        "timestamp": "2025-07-24_16-51-45",
+        "file": "backup_2025-07-24_16-51-45.db",
         "size": 159744,
-        "description": "Modifica\u00e7\u00f5es recentes",
-        "created_at": "2025-07-24 11:24:37"
-    },
-    {
-        "timestamp": "2025-07-24_10-57-17",
-        "file": "backup_2025-07-24_10-57-17.db",
-        "size": 159744,
-        "description": "Backup di\u00e1rio",
-        "created_at": "2025-07-24 10:57:17"
-    },
-    {
-        "timestamp": "2025-07-22_17-13-53",
-        "file": "backup_2025-07-22_17-13-53.db",
-        "size": 159744,
-        "description": "Modifica\u00e7\u00f5es recentes",
-        "created_at": "2025-07-22 17:13:53"
+        "description": "Primeiro backup",
+        "created_at": "2025-07-24 16:51:45"
     }
 ]

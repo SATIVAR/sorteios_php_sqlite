@@ -21,7 +21,7 @@ ini_set('session.use_strict_mode', 1);
 ini_set('session.cookie_samesite', 'Strict');
 
 // Configurações de performance para hospedagem compartilhada
-ini_set('memory_limit', '128M');
+ini_set('memory_limit', '256M');
 set_time_limit(30);
 
 // Definições de caminhos
